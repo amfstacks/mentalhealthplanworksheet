@@ -33,95 +33,98 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $pdf->AddPage();
 
     $css = <<<EOD
-<style>
-    body {
-        font-family: 'Arial', sans-serif;
-        color: #333;
-        background: #ffffff;
-    }
-    h2 {
-        color: #007bff;
-        font-size: 18px;
-        margin-bottom: 10px;
-        border-bottom: 2px solid #007bff;
-        padding-bottom: 5px;
-    }
-    p, label {
-        font-size: 14px;
-        margin-bottom: 10px;
-        line-height: 1.6;
-    }
-    .section {
-        margin-bottom: 20px;
-        padding: 10px;
-        border: 1px solid #cccccc;
-        border-radius: 5px;
-        background-color: #f8f9fa;
-    }
-    .title {
-        text-align: center;
-        color: #6a11cb;
-        margin-bottom: 20px;
-    }
-</style>
-EOD;
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            background: #ffffff;
+             margin: 0;
+            padding: 20px;
+        }
+        .container {
+            width: 90%;
+            max-width: 700px;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        h2 {
+            color: #007bff;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        p, label {
+            font-size: 14px;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        .section {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f8f9fa;
+        }
+        .answer {
+            display: inline-block;
+            padding: 5px 10px;
+            border: 1px solid #007bff;
+            border-radius: 4px;
+            background-color: #e7f1ff;
+            color: #007bff;
+            font-weight: bold;
+        }
+        .title {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #6a11cb;
+        }
+    </style>
+    EOD;
 
-    // Add content to the PDF
-    $html = "
-        <h1 style='text-align: center; color: #007bff;'>Mental Health Plan 2025</h1>
-        <h2>Contact Information</h2>
-        <p><strong>Email:</strong> $email</p>
-        <p><strong>Age:</strong> $age</p>
-        
-        <h2>Self-Awareness</h2>
-        <p><strong>Mental State:</strong> $mentalState</p>
-        <p><strong>Current Feelings:</strong> $currentFeelings</p>
-        <p><strong>Stressors:</strong> $stressors</p>
-        <p><strong>Mood Boosters:</strong> $moodBoosters</p>
-        
-        <h2>Mental Health Goals</h2>
-        <p>$goals</p>
-        
-        <h2>Daily Practices</h2>
-        <ul>";
-    foreach ($dailyHabits as $habit) {
-        $html .= "<li>$habit</li>";
-    }
-
-
+    // HTML content for the PDF
     $html = <<<EOD
-$css
-<div class="title">
-    <h1>Mental Health Plan 2025</h1>
-    <p>Personalized Plan for: <strong>$email</strong></p>
-</div>
-<div class="section">
-    <h2>Contact Information</h2>
-    <p><strong>Email:</strong> $email</p>
-    <p><strong>Age:</strong> $age</p>
-</div>
-<div class="section">
-    <h2>Self-Awareness</h2>
-    <p><strong>Mental State (1-10):</strong> $mentalState</p>
-    <p><strong>Current Feelings:</strong> $currentFeelings</p>
-    <p><strong>Main Stressors:</strong> $stressors</p>
-    <p><strong>Mood Boosters:</strong> $moodBoosters</p>
-</div>
-EOD;
-    $html .= "</ul>
-        <p><strong>Social Media Limit:</strong> $socialMediaLimit minutes</p>
-        <p><strong>Hours of Sleep:</strong> $hoursOfSleep hours</p>
-        
-        <h2>Managing Stress and Triggers</h2>
-        <p><strong>Stress Response:</strong> $stressResponse</p>
-        <p><strong>Calm Down Plan:</strong> $calmDownPlan</p>
-        <p><strong>Support Contacts:</strong> $supportContacts</p>
-        
-        <h2>Affirmations</h2>
-        <p>1. {$affirmations[0]}</p>
-        <p>2. {$affirmations[1]}</p>
-        <p>3. {$affirmations[2]}</p>
-    ";
+    $css
+    <div class="container">
+        <div class="title">
+            <h1>Your Mental Health Plan 2025</h1>
+            <p>Personalized Plan for: <span class="answer">$email</span></p>
+        </div>
+        <div class="section">
+            <h2>Contact Information</h2>
+            <p><strong>Email:</strong> <span class="answer">$email</span></p>
+            <p><strong>Age:</strong> <span class="answer">$age</span></p>
+        </div>
+        <div class="section">
+            <h2>Self-Awareness</h2>
+            <p><strong>Mental State (1-10):</strong> <span class="answer">$mentalState</span></p>
+            <p><strong>Current Feelings:</strong> <span class="answer">$currentFeelings</span></p>
+            <p><strong>Main Stressors:</strong> <span class="answer">$stressors</span></p>
+            <p><strong>Mood Boosters:</strong> <span class="answer">$moodBoosters</span></p>
+        </div>
+        <div class="section">
+            <h2>Mental Health Goals</h2>
+            <p><span class="answer">$goals</span></p>
+        </div>
+        <div class="section">
+            <h2>Daily Practices</h2>
+            <p><strong>Habits:</strong> <span class="answer">$dailyHabits</span></p>
+            <p><strong>Social Media Limit:</strong> <span class="answer">$socialMediaLimit minutes</span></p>
+            <p><strong>Sleep Hours:</strong> <span class="answer">$hoursOfSleep</span></p>
+        </div>
+        <div class="section">
+            <h2>Managing Stress and Triggers</h2>
+            <p><strong>Stress Response:</strong> <span class="answer">$stressResponse</span></p>
+            <p><strong>Calm Down Plan:</strong> <span class="answer">$calmDownPlan</span></p>
+            <p><strong>Support Contacts:</strong> <span class="answer">$supportContacts</span></p>
+        </div>
+        <div class="section">
+            <h2>Affirmations</h2>
+            <p><span class="answer">$affirmations</span></p>
+        </div>
+    </div>
+    EOD;
 
     $pdf->writeHTML($html, true, false, true, false, '');
 
