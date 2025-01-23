@@ -167,7 +167,7 @@
         <div class="progress-bar-container">
             <div class="progress-bar" id="progressBar"></div>
         </div>
-        <form id="mentalHealthForm" action="save.php" method="POST">
+        <form id="mentalHealthForm" action="pdf_preview.php" method="POST">
            
             <!-- Section 1 -->
             <div class="slide active">
@@ -208,35 +208,35 @@
                 <p>(Choose activities that are simple and sustainable.)</p>
                 <div>
                     <label>
-                        <input type="checkbox" name="daily_habits[]" value="Practice gratitude"> Practice gratitude (e.g., write down 3 things I’m grateful for each day).
+                        <input type="checkbox" name="daily_habit_practice_gratitude" value="Practice gratitude"> Practice gratitude (e.g., write down 3 things I’m grateful for each day).
                     </label>
                 </div>
                 <div>
                     <label>
-                        <input type="checkbox" name="daily_habits[]" value="Take a mindfulness break"> Take a 10-minute mindfulness or meditation break.
+                        <input type="checkbox" name="daily_habit_mindfulness" value="Take a mindfulness break"> Take a 10-minute mindfulness or meditation break.
                     </label>
                 </div>
                 <div>
                     <label>
-                        <input type="checkbox" name="daily_habits[]" value="Limit social media use"> Limit social media use to 
+                        <input type="checkbox" name="daily_habit_limit_social_media" value="Limit social media use"> Limit social media use to 
                         <input type="number" name="social_media_limit" style="width: 60px;" min="1"> minutes per day.
                     </label>
                 </div>
                 <div>
                     <label>
-                        <input type="checkbox" name="daily_habits[]" value="Get enough sleep"> Get at least 
+                        <input type="checkbox" name="daily_habit_sleep" value="Get enough sleep"> Get at least 
                         <input type="number" name="hours_of_sleep" style="width: 60px;" min="1" max="24"> hours of sleep.
                     </label>
                 </div>
                 <div>
                     <label>
-                        <input type="checkbox" name="daily_habits[]" value="Move my body"> Move my body (e.g., walking, stretching, or exercise).
+                        <input type="checkbox" name="daily_habit_exercise" value="Move my body"> Move my body (e.g., walking, stretching, or exercise).
                     </label>
                 </div>
                 <div>
                     <label>
-                        <input type="checkbox" name="daily_habits[]" value="Other"> Other: 
-                        <input type="text" name="daily_habits_other" style="width: 70%;">
+                        <input type="checkbox" name="daily_habit_other" value="Other"> Other: 
+                        <input type="text" name="daily_habit_other" style="width: 70%;">
                     </label>
                 </div>
             </div>

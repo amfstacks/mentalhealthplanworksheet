@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     file_put_contents($filePath, $pdfOutput);
 
     // Send email with PDF attachment
-    $to = 'example@email.com'; // Replace with user's email
+    $to = 'amfstacks@gmail.com'; // Replace with user's email
     $subject = 'Your Mental Health Plan 2025';
     $message = 'Find your personalized mental health plan attached.';
     $headers = "From: info@fayabase.com\r\n";
